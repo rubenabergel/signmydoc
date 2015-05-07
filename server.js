@@ -29,11 +29,11 @@ app.get('/', function(req, res){
   io.on('connection', function(socket){
       socket.on('info', function(info){
           var client = new Client({ email: info.email, phonenumber: info.phonenumber });
-            client.save(function (err) {
-                console.log('saved');
-                if (err) // ...
-                    console.log('err', err);
-            });
+            // client.save(function (err) {
+            //     console.log('saved');
+            //     if (err) // ...
+            //         console.log('err', err);
+            // });
           sendRequest(info);
           sendText(info);
       })
@@ -45,8 +45,8 @@ app.post('/callback', function(req, res){
     var form = new formidable.IncomingForm();
 
     form.parse(req, function(err, fields, files) {
-          console.log('.event',JSON.parse(fields.json).event);
-           console.log('.firect',JSON.parse(fields.json).requester_email_address);
+          console.log('111111',JSON.parse(fields.json).event.signature_request);
+           console.log('222222',JSON.parse(fields.json).event.signature_request.requester_email_address);
           if (JSON.parse(fields.json).event.event_type === 'signature_request_signed'){
             var promise = Client.findOne({'email': JSON.parse(fields.json).requester_email_address }).exec();
             promise.then(function (data) {
