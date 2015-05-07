@@ -12,31 +12,22 @@ var client = require('twilio')(accountSid , authToken);
 var hellosign = require('hellosign-sdk/lib/hellosign.js')({key: '9ed69561b84140c1b7a008f42037f5bc150ccc44c8c8784eb4e4197f546d713e'});
 
 
-
 app.get('/', function(req, res){
   res.sendfile('index.html');
 
 
+  io.on('connection', function(socket){
+      socket.on('info', function(info){
+          sendRequest(info);
+          sendText(info);
+      })
+  });
+});
 
-io.on('connection', function(socket){
-  socket.on('info', function(info){
-  sendRequest(info);
-  sendText(info);
-
-
-
-
-
-
-
-
-
-  })
-
-  app.get('/callback', function(req, res){
+app.get('/callback', function(req, res){
   res.sendfile('callback.html');
 });
-});
+
 
 
 
@@ -92,7 +83,7 @@ client.sendSms({
 
 
 
-});
+
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
