@@ -58,12 +58,17 @@ var options = {
 
 hellosign.signatureRequest.send(options)
     .then(function(response){
-        // console.log('response',response);
+        console.log('RESPONSE',response);
+        console.log('PARAMS',response.params);
         //parse response
     })
     .catch(function(err){
          console.log('err',err);
         //catch error
+    })
+    .finally(function(){
+      console.log("OPTIONS", options)
+        //optionally do yet another thing
     });
 }
 
