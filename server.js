@@ -30,10 +30,17 @@ app.get('/', function(req, res){
 
 
 app.post('/callback', function(req, res){
-  console.log('REQ ',req.params);
-  console.log('REs ',res.params);
   res.status(200).send('Hello API Event Received');
 });
+
+hellosign.account.update({callback_url : 'https://powerful-wildwood-3848.herokuapp.com/callbacl'})
+    .then(function(response){
+      console.log('respinse', response);
+        //parse response
+    })
+    .catch(function(err){
+        //catch error
+    });
 
 
 
