@@ -3,20 +3,20 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-// var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 //Twillio credential
 var accountSid = 'ACc772c86ab5d54b0c4491c46a5e0f3d4e';
 var authToken = '74656c21567f8edd15bcd405ff777828';
 var client = require('twilio')(accountSid , authToken);
 
-var busboy = require('connect-busboy');
+// var busboy = require('connect-busboy');
 
 // default options, no immediate parsing
-app.use(busboy());
+// app.use(busboy());
 //Hellosign Credential
 var hellosign = require('hellosign-sdk/lib/hellosign.js')({key: '9ed69561b84140c1b7a008f42037f5bc150ccc44c8c8784eb4e4197f546d713e'});
 
-// app.use(bodyParser.json());
+app.use(bodyParser.raw());
 app.get('/', function(req, res){
   res.sendfile('index.html');
 
@@ -31,18 +31,18 @@ app.get('/', function(req, res){
 
 
 app.post('/callback', function(req, res){
-  req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-    // ...
-    console.log(arguments);
-  });
-  req.busboy.on('field', function(key, value, keyTruncated, valueTruncated) {
-    // ...
-    console.log(arguments);
-  });
-  req.pipe(req.busboy);
+  // req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+  //   // ...
+  //   console.log(arguments);
+  // });
+  // req.busboy.on('field', function(key, value, keyTruncated, valueTruncated) {
+  //   // ...
+  //   console.log(arguments);
+  // });
+  // req.pipe(req.busboy);
   // etc ..
-  // console.log('req', req);
-  // console.log('req.body', req.body);
+  console.log('req', req);
+  console.log('req.body', req.body);
   res.status(200).send('Hello API Event Received');
 });
 
