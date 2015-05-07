@@ -45,9 +45,10 @@ app.post('/callback', function(req, res){
     var form = new formidable.IncomingForm();
 
     form.parse(req, function(err, fields, files) {
-          console.log(JSON.parse(fields.json).event.requester_email_address);
+          console.log('.event',JSON.parse(fields.json).event);
+           console.log('.firect',JSON.parse(fields.json).requester_email_address);
           if (JSON.parse(fields.json).event.event_type === 'signature_request_signed'){
-            var promise = Client.findOne({'email': JSON.parse(fields.json).event.requester_email_address }).exec();
+            var promise = Client.findOne({'email': JSON.parse(fields.json).requester_email_address }).exec();
             promise.then(function (data) {
                 if (data) {
                         client.sendSms({
