@@ -30,8 +30,8 @@ app.get('/callback', function(req, res){
 
 
 app.post('/callback', function(req, res){
-  console.log('REQUEST AND RESPONSE');
-
+  onsole.log('REQ ',req);
+  console.log('REQUEST ',req.body);
   res.status(200).send('Hello API Event Received');
 });
 
@@ -58,8 +58,6 @@ var options = {
 
 hellosign.signatureRequest.send(options)
     .then(function(response){
-        console.log('RESPONSE',response);
-        console.log('PARAMS',response.params);
         //parse response
     })
     .catch(function(err){
@@ -67,7 +65,6 @@ hellosign.signatureRequest.send(options)
         //catch error
     })
     .finally(function(){
-      console.log("OPTIONS", options)
         //optionally do yet another thing
     });
 }
