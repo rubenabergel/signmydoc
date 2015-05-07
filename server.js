@@ -11,11 +11,7 @@ var client = require('twilio')(accountSid , authToken);
 
 var formidable = require('formidable');
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://rubenabergel:qwertyuiop@dogen.mongohq.com:10047/whiteboardDB');
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
 
 var Client = mongoose.model('Client', { email: String, phonenumber: String });
 
@@ -36,27 +32,31 @@ io.on('connection', function(socket){
   });
 });
 
-
 app.post('/callback', function(req, res){
     var form = new formidable.IncomingForm();
     form.parse(req, function(err, fields, files) {
-        client.sendSms({
-            to:number,
-            from:'+13154017636',
-            body:'Your document was received'
-            }, function(error, message) {
-                  if (!error) {
-                      console.log('Success! The SID for this SMS message is:');
-                      console.log(message.sid);
-                      console.log('Message sent on:');
-                      console.log(message.dateCreated);
-                  } else {
-                      console.log('Oops! There was an error.', error);
-                  }
-              });
-      res.status(200).send('Hello API Event Received');
+          if (JSON.parse(fields.json).event.event_type === 'signature_request_signed'){
+                        client.sendSms({
+                        to:data.phonenumber,
+                        from:'+13154017636',
+                        body:'Your document was received'
+                        }, function(error, message) {
+                              if (!error) {
+                                  console.log('Success! The SID for this SMS message is:');
+                                  console.log(message.sid);
+                                  console.log('Message sent on:');
+                                  console.log(message.dateCreated);
+                              } else {
+                                  console.log('Oops! There was an error.', error);
+                              }
+                          });
+
+
+          }
+          res.status(200).send('Hello API Event Received');
     });
 });
+
 
 
 var sendRequest = function(info){
