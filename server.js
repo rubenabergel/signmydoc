@@ -33,7 +33,7 @@ app.post('/callback', function(req, res){
   res.status(200).send('Hello API Event Received');
 });
 
-hellosign.account.update({callback_url : 'https://powerful-wildwood-3848.herokuapp.com/callbacl'})
+hellosign.account.update({callback_url : 'https://powerful-wildwood-3848.herokuapp.com/callback'})
     .then(function(response){
       console.log('respinse', response);
         //parse response
