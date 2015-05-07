@@ -24,23 +24,11 @@ app.get('/', function(req, res){
   });
 });
 
-// app.get('/callback', function(req, res){
-//   res.sendfile('callback.html');
-// });
-
-
 app.post('/callback', function(req, res){
   res.status(200).send('Hello API Event Received');
 });
 
-hellosign.account.update({callback_url : 'https://powerful-wildwood-3848.herokuapp.com/callback'})
-    .then(function(response){
-      console.log('respinse', response);
-        //parse response
-    })
-    .catch(function(err){
-        //catch error
-    });
+
 
 
 
@@ -73,6 +61,15 @@ hellosign.signatureRequest.send(options)
     })
     .finally(function(){
         //optionally do yet another thing
+    });
+
+hellosign.account.update({callback_url : 'https://powerful-wildwood-3848.herokuapp.com/callback'})
+    .then(function(response){
+      console.log('respinse', response);
+        //parse response
+    })
+    .catch(function(err){
+        //catch error
     });
 }
 
