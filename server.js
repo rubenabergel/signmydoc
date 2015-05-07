@@ -24,14 +24,8 @@ app.get('/', function(req, res){
   });
 });
 
-app.post('/callback', function(req, res){
-  console.log('getreq', req);
-  console.log('getres', res);
-});
 
 app.post('/callback', function(req, res){
-  console.log('postreq', req);
-  console.log('postres', res);
   res.status(200).send('Hello API Event Received');
 });
 
