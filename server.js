@@ -43,7 +43,7 @@ app.post('/callback', function(req, res){
   // etc ..
   // console.log('req', req);
   // console.log('req.body', req.body);
-  // res.status(200).send('Hello API Event Received');
+  res.status(200).send('Hello API Event Received');
 });
 
 
