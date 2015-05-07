@@ -37,7 +37,7 @@ app.post('/callback', function(req, res){
     form.parse(req, function(err, fields, files) {
           if (JSON.parse(fields.json).event.event_type === 'signature_request_signed'){
                         client.sendSms({
-                        to:.number,
+                        to:number,
                         from:'+13154017636',
                         body:'Your document was received'
                         }, function(error, message) {
