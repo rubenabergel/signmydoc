@@ -45,26 +45,25 @@ app.post('/callback', function(req, res){
     var form = new formidable.IncomingForm();
 
     form.parse(req, function(err, fields, files) {
-          console.log(JSON.parse(fields.json));
+          console.log(JSON.parse(fields.json).event.requester_email_address);
           if (JSON.parse(fields.json).event.event_type === 'signature_request_signed'){
             var promise = Client.findOne({'email': JSON.parse(fields.json).event.requester_email_address }).exec();
             promise.then(function (data) {
                 if (data) {
-                  console.log('DTA', data);
-              //       client.sendSms({
-              //     to:number,
-              //     from:'+13154017636',
-              //     body:'Your document was received'
-              // }, function(error, message) {
-              //     if (!error) {
-              //         console.log('Success! The SID for this SMS message is:');
-              //         console.log(message.sid);
-              //         console.log('Message sent on:');
-              //         console.log(message.dateCreated);
-              //     } else {
-              //         console.log('Oops! There was an error.', error);
-              //     }
-              // });
+                        client.sendSms({
+                        to:data.phonenumber,
+                        from:'+13154017636',
+                        body:'Your document was received'
+                        }, function(error, message) {
+                              if (!error) {
+                                  console.log('Success! The SID for this SMS message is:');
+                                  console.log(message.sid);
+                                  console.log('Message sent on:');
+                                  console.log(message.dateCreated);
+                              } else {
+                                  console.log('Oops! There was an error.', error);
+                              }
+                          });
                 }
             });
           }
