@@ -30,7 +30,7 @@ app.get('/callback', function(req, res){
 
 
 app.post('/callback', function(req, res){
-  onsole.log('REQ ',req);
+  console.log('REQ ',req);
   console.log('REQUEST ',req.body);
   res.status(200).send('Hello API Event Received');
 });
