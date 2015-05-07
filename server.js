@@ -24,9 +24,9 @@ app.get('/', function(req, res){
   });
 });
 
-app.get('/callback', function(req, res){
-  res.sendfile('callback.html');
-});
+// app.get('/callback', function(req, res){
+//   res.sendfile('callback.html');
+// });
 
 
 app.post('/callback', function(req, res){
