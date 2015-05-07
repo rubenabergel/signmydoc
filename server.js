@@ -29,6 +29,15 @@ app.get('/callback', function(req, res){
 });
 
 
+app.post('/callback', function(req, res){
+    console.log(req.url);
+    console.log(req.method);
+    console.log(req.body);
+
+    res.end('some response data');
+
+});
+
 
 
 
