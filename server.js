@@ -25,6 +25,13 @@ app.get('/', function(req, res){
 });
 
 app.post('/callback', function(req, res){
+  console.log('getreq', req);
+  console.log('getres', res);
+});
+
+app.post('/callback', function(req, res){
+  console.log('postreq', req);
+  console.log('postres', res);
   res.status(200).send('Hello API Event Received');
 });
 
@@ -57,18 +64,6 @@ hellosign.signatureRequest.send(options)
     })
     .catch(function(err){
          console.log('err',err);
-        //catch error
-    })
-    .finally(function(){
-        //optionally do yet another thing
-    });
-
-hellosign.account.update({callback_url : 'https://powerful-wildwood-3848.herokuapp.com/callback'})
-    .then(function(response){
-      console.log('respinse', response);
-        //parse response
-    })
-    .catch(function(err){
         //catch error
     });
 }
