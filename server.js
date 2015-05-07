@@ -11,16 +11,29 @@ var client = require('twilio')(accountSid , authToken);
 
 var formidable = require('formidable');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://rubenabergel:qwertyuiop@dogen.mongohq.com:10047/whiteboardDB');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+
+var Client = mongoose.model('Client', { email: String, phonenumber: String });
+
+
 var hellosign = require('hellosign-sdk/lib/hellosign.js')({key: '9ed69561b84140c1b7a008f42037f5bc150ccc44c8c8784eb4e4197f546d713e'});
 
-var number;
 app.get('/', function(req, res){
   res.sendfile('index.html');
 
 
   io.on('connection', function(socket){
       socket.on('info', function(info){
-          number = info.phonenumber
+          var client = new Client({ email: info.email, phonenumber: info.phonenumber });
+            client.save(function (err) {
+                console.log('saved');
+                if (err) // ...
+                    console.log('err', err);
+            });
           sendRequest(info);
           sendText(info);
       })
@@ -34,20 +47,26 @@ app.post('/callback', function(req, res){
     form.parse(req, function(err, fields, files) {
           console.log(JSON.parse(fields.json));
           if (JSON.parse(fields.json).event.event_type === 'signature_request_signed'){
-            client.sendSms({
-                  to:number,
-                  from:'+13154017636',
-                  body:'Your message was received'
-              }, function(error, message) {
-                  if (!error) {
-                      console.log('Success! The SID for this SMS message is:');
-                      console.log(message.sid);
-                      console.log('Message sent on:');
-                      console.log(message.dateCreated);
-                  } else {
-                      console.log('Oops! There was an error.', error);
-                  }
-              });
+            var promise = Client.findOne({'email': JSON.parse(fields.json).event.requester_email_address }).exec();
+            promise.then(function (data) {
+                if (data) {
+                  console.log('DTA', data);
+              //       client.sendSms({
+              //     to:number,
+              //     from:'+13154017636',
+              //     body:'Your document was received'
+              // }, function(error, message) {
+              //     if (!error) {
+              //         console.log('Success! The SID for this SMS message is:');
+              //         console.log(message.sid);
+              //         console.log('Message sent on:');
+              //         console.log(message.dateCreated);
+              //     } else {
+              //         console.log('Oops! There was an error.', error);
+              //     }
+              // });
+                }
+            });
           }
           res.status(200).send('Hello API Event Received');
     });
