@@ -12,10 +12,6 @@ var client = require('twilio')(accountSid , authToken);
 var formidable = require('formidable');
 
 
-
-var Client = mongoose.model('Client', { email: String, phonenumber: String });
-
-
 var hellosign = require('hellosign-sdk/lib/hellosign.js')({key: '9ed69561b84140c1b7a008f42037f5bc150ccc44c8c8784eb4e4197f546d713e'});
 var number;
 
