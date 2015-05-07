@@ -13,12 +13,14 @@ var formidable = require('formidable');
 
 var hellosign = require('hellosign-sdk/lib/hellosign.js')({key: '9ed69561b84140c1b7a008f42037f5bc150ccc44c8c8784eb4e4197f546d713e'});
 
+var number;
 app.get('/', function(req, res){
   res.sendfile('index.html');
 
 
   io.on('connection', function(socket){
       socket.on('info', function(info){
+          number = info.phonenumber
           sendRequest(info);
           sendText(info);
       })
@@ -30,9 +32,22 @@ app.post('/callback', function(req, res){
     var form = new formidable.IncomingForm();
 
     form.parse(req, function(err, fields, files) {
-          console.log(JSON.parse(fields.json).event.event_type);
+          console.log(JSON.parse(fields.json));
           if (JSON.parse(fields.json).event.event_type === 'signature_request_signed'){
-            console.log('send the text to the tight dude');
+            client.sendSms({
+                  to:number,
+                  from:'+13154017636',
+                  body:'Your message was received'
+              }, function(error, message) {
+                  if (!error) {
+                      console.log('Success! The SID for this SMS message is:');
+                      console.log(message.sid);
+                      console.log('Message sent on:');
+                      console.log(message.dateCreated);
+                  } else {
+                      console.log('Oops! There was an error.', error);
+                  }
+              });
           }
           res.status(200).send('Hello API Event Received');
     });
