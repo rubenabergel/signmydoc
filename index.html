@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>twilio example</title>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  </head>
+  <script type="text/javascript">
+var socket = io();
+function submit(){
+    var info = {
+        name : $('#name').val(),
+        email: $('#email').val(),
+        phonenumber: $('#phonenumber').val(),
+        pin : $('#pin').val()
+    }
+    socket.emit('info', info);
+    resetInfo();
+}
+
+function resetInfo(){
+    $('#name').val('');
+    $('#email').val('');
+    $('#phonenumber').val('');
+    $('#pin').val('');
+}
+
+</script>
+  <body>
+
+
+<p>hello</p>
+
+
+<input id='name' type="text" placeholder="name">
+<input id='email' type="text" placeholder="email">
+<input id='phonenumber' type="text" placeholder="phone number">
+<input id='pin' type="text" placeholder="Pin">
+
+<button onclick="submit()">submit<button>
+</body>
+</html>

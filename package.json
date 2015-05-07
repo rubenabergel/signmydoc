@@ -1,0 +1,23 @@
+{
+  "name": "signmydoc",
+  "version": "0.0.1",
+  "description": "simple text of hellosignAPI",
+  "main": "index.js",
+  "author": "Ruben Abergel",
+  "license": "BSD",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "~4.9.x"
+  },
+  "engines": {
+    "node": "0.12.2"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "license": "MIT"
+}
+
