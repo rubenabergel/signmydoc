@@ -58,6 +58,7 @@ $('#file').change(function(){
               console.log("Store successful:", JSON.stringify(Blob));
                   console.log(Blob.url);
                   file = Blob.url;
+                  $('.loader').html("File Loaded");
 
             },
             function(FPError) {
@@ -65,6 +66,7 @@ $('#file').change(function(){
             },
             function(progress) {
               console.log("Loading: "+progress+"%");
+              $('.loader').html("Loading: "+progress+"%");
             }
           );
         }
@@ -87,7 +89,7 @@ $('#file').change(function(){
       </div>
       <div class="row">
         <div class="input-field col s6 offset-s3">
-          <input placeholder="Placeholder" id="sender-name" type="text" class="validate">
+          <input id="sender-name" type="text" class="validate">
           <label for="name">Name</label>
         </div>
       </div>
@@ -113,7 +115,7 @@ $('#file').change(function(){
       </div>
       <div class="row">
         <div class="input-field col s6 offset-s3">
-          <input placeholder="Placeholder" id="recipient-name" type="text" class="validate">
+          <input id="recipient-name" type="text" class="validate">
           <label for="name">Name</label>
         </div>
       </div>
@@ -140,6 +142,7 @@ $('#file').change(function(){
                     <span>File</span>
                     <input id="file" type="file" />
                 </div>
+                <span class="loader"></spam>
             </div>
           </div>
           <div class="input-field col s2">
@@ -148,10 +151,14 @@ $('#file').change(function(){
         </div>
       </div>
   </div>
+      <div class="row">
+          <div class="col s6 offset-s5">
+                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="submit()">Submit
+                <i class="mdi-content-send right"></i>
+                </button>
+           </div>
+      </div>
 
-    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="submit()">Submit
-    <i class="mdi-content-send right"></i>
-    </button>
 
 <!-- <h5>You are you sending this to?</h5>
 <input id='name' type="text" placeholder="name">
