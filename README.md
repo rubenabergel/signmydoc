@@ -7,7 +7,7 @@ You can find a demo at : https://powerful-wildwood-3848.herokuapp.com/
 
 
 There is a better version of this sample app on the redesign branch. 
-This version lets people easily send each other contracts to sign. The user can upload anyfile and send it as a contract leveraging Hellosign and Filepicker APIs.
+This version lets people easily send each other contracts to sign. The user can upload any file and send it as a contract leveraging Hellosign and Filepicker APIs.
 This version will notify both partie that the contract has been signed. 
 Start that repo with ngrok. 
 
