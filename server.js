@@ -83,7 +83,7 @@ app.post('/callback', function(req, res){
                     promise.then(function (data) {
                     if (data) {
                         sendText('The document was received, thank you', data.recipient.phonenumber);
-                        sendText(data.recipient.name +' just signed your document!', data.sender.phonenumber);
+                        sendText('Your document was just signed! We sent you a confirmation by email.', data.sender.phonenumber);
                     }
                     if (err) // ...
                     console.log('err', err);
