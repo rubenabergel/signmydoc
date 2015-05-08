@@ -1,0 +1,1 @@
+ This version lets people easily send each other contracts to sign. The user can upload any file and send it as a contract leveraging Hellosign and Filepicker APIs. This version will notify both partie that the contract has been signed. Start that repo with ngrok.
