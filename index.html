@@ -2,174 +2,157 @@
 <html>
   <head>
     <title>Sign My Doc</title>
-
     <script src="/socket.io/socket.io.js"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript"
- src="//api.filepicker.io/v1/filepicker.js"></script>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+    src="//api.filepicker.io/v1/filepicker.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
   </head>
   <script type="text/javascript">
-var socket = io();
-var file;
-function submit(){
-    var info = {
-        pin : $('#pin').val(),
-        file : file,
-        createdAt:new Date(),
-        sender:{
-            name : $('#sender-name').val(),
-            email: $('#sender-email').val(),
-            phonenumber: $('#sender-phonenumber').val()
-
-        },
-        recipient : {
-            name : $('#recipient-name').val(),
-            email: $('#recipient-email').val(),
-            phonenumber: $('#recipient-phonenumber').val()
-        },
-    }
-    socket.emit('info', info);
-    resetInfo();
-}
-
-function resetInfo(){
-    $('#name').val('');
-    $('#email').val('');
-    $('#phonenumber').val('');
-    $('#pin').val('');
-    $('#file').val('');
-}
-
-$("document").ready(function(){
-$('#file').change(function(){
-  console.log('ok');
-    filepicker.setKey("Az5qDCoMXSW2MMbalBmOZz");
-        var input = document.getElementById("file");
-        if (!input.value) {
-          console.log("Choose a png to store to S3");
-        } else {
-          filepicker.store(
-            input,
-            function(Blob){
-              console.log("Store successful:", JSON.stringify(Blob));
-                  console.log(Blob.url);
-                  file = Blob.url;
-                  $('.loader').html("File Loaded");
+    var socket = io();
+    var file;
+    function submit(){
+        var info = {
+            pin : $('#pin').val(),
+            file : file,
+            createdAt:new Date(),
+            sender:{
+                name : $('#sender-name').val(),
+                email: $('#sender-email').val(),
+                phonenumber: $('#sender-phonenumber').val()
 
             },
-            function(FPError) {
-              console.log(FPError.toString());
+            recipient : {
+                name : $('#recipient-name').val(),
+                email: $('#recipient-email').val(),
+                phonenumber: $('#recipient-phonenumber').val()
             },
-            function(progress) {
-              console.log("Loading: "+progress+"%");
-              $('.loader').html("Loading: "+progress+"%");
-            }
-          );
         }
+        socket.emit('info', info);
+        resetInfo();
+    }
 
-})
-});
+    function resetInfo(){
+        $('#name').val('');
+        $('#email').val('');
+        $('#phonenumber').val('');
+        $('#pin').val('');
+        $('#file').val('');
+    }
+
+    $("document").ready(function(){
+    $('#file').change(function(){
+      console.log('ok');
+        filepicker.setKey("Az5qDCoMXSW2MMbalBmOZz");
+            var input = document.getElementById("file");
+            if (!input.value) {
+              console.log("Choose a png to store to S3");
+            } else {
+              filepicker.store(
+                input,
+                function(Blob){
+                  console.log("Store successful:", JSON.stringify(Blob));
+                      console.log(Blob.url);
+                      file = Blob.url;
+                      $('.loader').html("File Loaded");
+
+                },
+                function(FPError) {
+                  console.log(FPError.toString());
+                },
+                function(progress) {
+                  console.log("Loading: "+progress+"%");
+                  $('.loader').html("Loading: "+progress+"%");
+                }
+              );
+            }
+
+    })
+    });
 </script>
-  <body>
+<body>
 
 <div style="padding: 40px 0;border-bottom: 1px solid #CCCCCC;">
   <h2 class="center-align" style="margin:65px 0">SignMe<h2>
-    <h4 class="center-align">The easiest way to get your document signed</h4>
+  <h4 class="center-align">The easiest way to get your documents signed</h4>
 </div>
 
 
 
-  <div class="row">
-      <div class="col s6 offset-s3">
-          <h5>About you</h5>
-      </div>
-      <div class="row">
-        <div class="input-field col s6 offset-s3">
-          <input id="sender-name" type="text" class="validate">
-          <label for="name">Name</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6 offset-s3">
-          <input id="sender-email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6 offset-s3">
-          <input id="sender-phonenumber" type="tel" class="validate">
-          <label for="icon_telephone">Telephone</label>
+<div class="row">
+  <div class="col s6 offset-s3">
+      <h5>About you</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s6 offset-s3">
+    <input id="sender-name" type="text" class="validate">
+    <label for="name">Name</label>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s6 offset-s3">
+    <input id="sender-email" type="email" class="validate">
+    <label for="email">Email</label>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s6 offset-s3">
+    <input id="sender-phonenumber" type="tel" class="validate">
+    <label for="icon_telephone">Telephone</label>
+  </div>
+</div>
+
+
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <h5>You are you sending this to ?</h5>
         </div>
     </div>
-
-
-  <div class="row">
-      <div class="row">
-          <div class="col s6 offset-s3">
-              <h5>You are you sending this to ?</h5>
+    <div class="row">
+      <div class="input-field col s6 offset-s3">
+        <input id="recipient-name" type="text" class="validate">
+        <label for="name">Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6 offset-s3">
+        <input id="recipient-email" type="email" class="validate">
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6 offset-s3">
+        <input id="recipient-phonenumber" type="tel" class="validate">
+        <label for="icon_telephone">Telephone</label>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <h5>What are you sending ?</h5>
+        </div>
+        <div class="col s4 offset-s3">
+          <div class="file-field input-field">
+              <input class="file-path validate" type="text"/>
+              <div class="btn">
+                  <span>File</span>
+                  <input id="file" type="file"/>
+              </div>
+              <span class="loader"></span>
           </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6 offset-s3">
-          <input id="recipient-name" type="text" class="validate">
-          <label for="name">Name</label>
         </div>
+        <div class="input-field col s2">
+          <input id="pin" type="text" class="validate">
+          <label for="pin">Pin</label>
       </div>
-      <div class="row">
-        <div class="input-field col s6 offset-s3">
-          <input id="recipient-email" type="email" class="validate">
-          <label for="email">Email</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s6 offset-s3">
-          <input id="recipient-phonenumber" type="tel" class="validate">
-          <label for="icon_telephone">Telephone</label>
-        </div>
-      </div>
-      <div class="row">
-          <div class="col s6 offset-s3">
-              <h5>What are you sending ?</h5>
-          </div>
-          <div class="col s4 offset-s3">
-            <div class="file-field input-field">
-                <input class="file-path validate" type="text"/>
-                <div class="btn">
-                    <span>File</span>
-                    <input id="file" type="file" />
-                </div>
-                <span class="loader"></spam>
-            </div>
-          </div>
-          <div class="input-field col s2">
-            <input id="pin" type="text" class="validate">
-            <label for="pin">Pin</label>
-        </div>
-      </div>
-  </div>
-      <div class="row">
-          <div class="col s6 offset-s5">
-                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="submit()">Submit
-                <i class="mdi-content-send right"></i>
-                </button>
-           </div>
-      </div>
-
-
-<!-- <h5>You are you sending this to?</h5>
-<input id='name' type="text" placeholder="name">
-<input id='email' type="text" placeholder="email">
-<input id='phonenumber' type="text" placeholder="phone number">
-
-<input id='pin' type="text" placeholder="Pin">
-<input id='file' type='file'>
-<button onclick="submit()">submit</button> -->
-
-
-
+    </div>
+    <div class="row">
+        <div class="col s6 offset-s5">
+              <button class="btn waves-effect waves-light" type="submit" name="action" onclick="submit()">Submit
+              <i class="mdi-content-send right"></i>
+              </button>
+         </div>
+    </div>
 </body>
 </html>
