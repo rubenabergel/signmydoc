@@ -4,11 +4,12 @@
   "description": "simple text of hellosignAPI",
   "main": "index.js",
   "author": "Ruben Abergel",
-  "license": "BSD",
+  "license": "MIT",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
+    "domain": "0.0.1",
     "express": "~4.9.x"
   },
   "engines": {
@@ -17,7 +18,5 @@
   "keywords": [
     "node",
     "express"
-  ],
-  "license": "MIT"
+  ]
 }
-

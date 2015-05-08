@@ -1,0 +1,85 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'ngrock', '--save' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 warn package.json signmydoc@0.0.1 No repository field.
+5 warn package.json signmydoc@0.0.1 No README data
+6 warn package.json domain@0.0.1 domain is also the name of a node core module.
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'ngrock', null ]
+9 verbose cache add name=undefined spec="ngrock" args=["ngrock",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'ngrock',
+10 verbose parsed url   path: 'ngrock',
+10 verbose parsed url   href: 'ngrock' }
+11 silly lockFile 0ac731b5-ngrock ngrock
+12 verbose lock ngrock /Users/RubenAbergel/.npm/0ac731b5-ngrock.lock
+13 silly lockFile 0ac731b5-ngrock ngrock
+14 silly lockFile 0ac731b5-ngrock ngrock
+15 verbose addNamed [ 'ngrock', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile c9ca9afc-ngrock ngrock@
+18 verbose lock ngrock@ /Users/RubenAbergel/.npm/c9ca9afc-ngrock.lock
+19 silly addNameRange { name: 'ngrock', range: '*', hasData: false }
+20 verbose request where is /ngrock
+21 verbose request registry https://registry.npmjs.org/
+22 verbose request id a0db9e1915a47c76
+23 verbose url raw /ngrock
+24 verbose url resolving [ 'https://registry.npmjs.org/', './ngrock' ]
+25 verbose url resolved https://registry.npmjs.org/ngrock
+26 verbose request where is https://registry.npmjs.org/ngrock
+27 info trying registry request attempt 1 at 20:23:28
+28 http GET https://registry.npmjs.org/ngrock
+29 http 404 https://registry.npmjs.org/ngrock
+30 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 verbose headers   'content-type': 'application/json',
+30 verbose headers   'cache-control': 'max-age=0',
+30 verbose headers   'content-length': '51',
+30 verbose headers   'accept-ranges': 'bytes',
+30 verbose headers   date: 'Fri, 08 May 2015 03:23:30 GMT',
+30 verbose headers   via: '1.1 varnish',
+30 verbose headers   age: '0',
+30 verbose headers   connection: 'keep-alive',
+30 verbose headers   'x-served-by': 'cache-sjc3127-SJC',
+30 verbose headers   'x-cache': 'MISS',
+30 verbose headers   'x-cache-hits': '0',
+30 verbose headers   'x-timer': 'S1431055410.203401,VS0,VE351' }
+31 silly registry.get cb [ 404,
+31 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+31 silly registry.get     'content-type': 'application/json',
+31 silly registry.get     'cache-control': 'max-age=0',
+31 silly registry.get     'content-length': '51',
+31 silly registry.get     'accept-ranges': 'bytes',
+31 silly registry.get     date: 'Fri, 08 May 2015 03:23:30 GMT',
+31 silly registry.get     via: '1.1 varnish',
+31 silly registry.get     age: '0',
+31 silly registry.get     connection: 'keep-alive',
+31 silly registry.get     'x-served-by': 'cache-sjc3127-SJC',
+31 silly registry.get     'x-cache': 'MISS',
+31 silly registry.get     'x-cache-hits': '0',
+31 silly registry.get     'x-timer': 'S1431055410.203401,VS0,VE351' } ]
+32 silly lockFile c9ca9afc-ngrock ngrock@
+33 silly lockFile c9ca9afc-ngrock ngrock@
+34 error 404 404 Not Found: ngrock
+34 error 404
+34 error 404 'ngrock' is not in the npm registry.
+34 error 404 You should bug the author to publish it
+34 error 404 It was specified as a dependency of 'signmydoc'
+34 error 404
+34 error 404 Note that you can also install from a
+34 error 404 tarball, folder, or http url, or git url.
+35 error System Darwin 13.4.0
+36 error command "node" "/usr/local/bin/npm" "install" "ngrock" "--save"
+37 error cwd /Users/RubenAbergel/Desktop/CODING PROJECTS/signmydoc
+38 error node -v v0.10.35
+39 error npm -v 1.4.28
+40 error code E404
+41 verbose exit [ 1, true ]
